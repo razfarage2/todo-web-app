@@ -8,9 +8,16 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.views.generic import TemplateView
+from django.contrib.auth import get_user_model
 
 from enums import Status
 from .models import Task
+from users.models import CustomUser
+from users.forms import CustomUserCreationForm
+
+
+User = get_user_model()
 
 
 class CustomLoginView(LoginView):
@@ -24,7 +31,7 @@ class CustomLoginView(LoginView):
 
 class RegisterPage(FormView):
     template_name = 'base/register.html'
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     redirect_authenticated_user = True
     success_url = reverse_lazy('tasks')
 
@@ -40,14 +47,20 @@ class RegisterPage(FormView):
         return super(RegisterPage, self).get(*args, **kwargs)
 
 
+
+class GuestPage(TemplateView):
+    template_name = 'base/guest_page.html'
+
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = "tasks"
+    login_url = 'guest-page'
 
     def get_context_data(self,  **kwargs):
         context = super().get_context_data(**kwargs)
         context['tasks'] = context['tasks'].filter(user=self.request.user)
-        context['count'] = context['tasks'].filter(status=Status.COMPLETED.value).count()
+        context['count'] = context['tasks'].filter(status=Status['COMPLETED'].value).count()
+        print(context['count'])
 
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
@@ -63,12 +76,14 @@ class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'task'
     template_name = 'base/task.html'
+    login_url = 'guest-page'
 
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = ['title', 'description', 'status', 'priority']
     success_url = reverse_lazy('tasks')
+    login_url = 'guest-page'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -79,6 +94,7 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['title', 'description', 'status', 'priority']
     success_url = reverse_lazy('tasks')
+    login_url = 'guest-page'
 
 
 
@@ -86,5 +102,6 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
+    login_url = 'guest-page'
 
 

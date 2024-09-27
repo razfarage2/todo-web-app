@@ -1,0 +1,7 @@
+{% extends 'base/main.html' %}
+{% block content %}
+<h1>Please Login to View this page</h1>
+<a href="{% url 'login' %}">Login</a>
+<p>if you dont have an account you can <a href="{% url 'register' %}">register</a></p>
+
+{% endblock content%}
