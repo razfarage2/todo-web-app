@@ -8,7 +8,7 @@ from users.models import CustomUser
 class Task(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=128)
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField( max_length=120, null=True, blank=True)
     status = models.CharField(max_length=30, choices=[(tag.name, tag.value) for tag in Status], default='Pending')
     priority = models.CharField(max_length=30, choices=[(tag.name, tag.value) for tag in Priority], default='Low')
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='tasks', null=False, blank=False)
@@ -19,4 +19,4 @@ class Task(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['status']
+        ordering = ['-priority']

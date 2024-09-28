@@ -6,8 +6,6 @@
 {% endblock extraheader %}
     
 
-
-
 {% block content %}
 <div class="header-bar">
     <div class="header-bar-content">
@@ -21,7 +19,7 @@
             <button class="button" type="submit">Logout</button>
         </form>
             {% else %}
-                <a href="{% url 'login' %} class="button"">Login</a>
+                <a href="{% url 'login' %} class="button">Login</a>
             {% endif %}
 
 </div>
@@ -29,17 +27,16 @@
 <div class="search-add-wrapper">
     <form method="GET" class="search-form">
         <input type='text' name='search-area' placeholder="Search your task" value="{{search_input}}" class="search-add label-text">
-        <input class="button" type="submit" value='Search'>
+        <input class="button" type="submit" value='Search' style="margin-right: -5px;">
     </form>
+        <a href="{% url 'task-create' %}" class="button btn-add">Add Task</a>
 </div>
 
-<div class="modal-add-task">
-    <a href="{% url 'task-create' %}" class="button">Add Task</a>
-</div>
 
 
 
 <div class="task-items-wrapper">
+
     {% for task in tasks %}
     <div class="task-wrapper">
         {% if task.status == Status.COMPLETED.value %}
@@ -52,18 +49,19 @@
         {% else %}
            <div class="task">
                 <div class="task-complete-icon"></div>
-               <div class="task-content">
-                    <div class="task-con"><h4>Name:</h4> <a href="{% url 'task-update' task.id %}" class="task-title">{{task}}</a> </div>
-                    <div class="task-con-Description"><h4>Description:</h4> <span class="task-description">{{task.description}}</span></div>
-                    <div class="task-con"><h4>Status:</h4> <span class="task-status">{{task.get_status_display}}</span></div>
-                    <div class="task-con"><h4>Priority:</h4> <span class="task-priority">{{task.get_priority_display}}</span></div>
-                    <div class="task-con"><h4>Created At:</h4> <span class="task-created">{{task.created_at}}</span></div>
-                    <div class="task-con"><h4>Updated At:</h4> <span class="task-updated">{{task.updated_at}}</span></div>
-                     <a class="delete-link" href="{% url 'task-delete' task.id %}" class="button">&#215;</a>
-                
+                <div class="task-content">
+                <div class="task-con"><h4>Name:</h4> <span class="task-title">{{task}}</span> </div>
+                <div class="task-con-Description"><h4>Description:</h4> <span class="task-description">{{task.description}}</span></div>
+                <div class="task-con"><h4>Status:</h4> <span class="task-status">{{task.get_status_display}}</span></div>
+                <div class="task-con"><h4>Priority:</h4> <span class="task-priority">{{task.get_priority_display}}</span></div>
+                <div class="task-con"><h4>Created:</h4> <span class="task-created">{{ task.created_at|date:"M d, h:i A" }}</span></div>
+                <div class="task-con"><h4>Updated:</h4> <span class="task-updated">{{ task.updated_at|date:"M d, h:i A" }}</span></div>
+                 <div class="buttons-custom">
+                    <a class="button btn-edit" href="{% url 'task-update' task.id %} ">Edit Task</a>
+                     <a class="button btn-delete" href="{% url 'task-delete' task.id %} ">Delete Task</a>
+                 </div>
                 </div>
-                <br>
-                <hr>
+                <hr style="border: 1px solid rgba(0, 0, 0, 0.158); margin: 1rem;">
 
             </div>
 

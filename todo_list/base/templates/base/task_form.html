@@ -7,46 +7,45 @@
 {% endblock extraheader %}
     
 {% block content %}
-
-
-<form method="POST" class="styled-form">
-    {% csrf_token %}
+    <form method="POST" class="styled-form">
+        {% csrf_token %}
+        <a href="{% url 'tasks' %}"class="button btn-back" style="font-size: .7rem; margin-bottom: .5rem;"> Go Back </a>
     
-    <div class="form-group">
-        <label for="{{ form.name.id_for_label }}">{{ form.title.label }}</label>
-        {{ form.title }}  
-        {% if form.title.errors %}
-            <div class="error">{{ form.title.errors }}</div>
-        {% endif %}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
-        {{ form.description }}
-        {% if form.description.errors %}
-            <div class="error">{{ form.description.errors }}</div>
-        {% endif %}
-    </div>
-
-    <div class="dropdown">
         <div class="form-group">
-            <label for="{{ form.status.id_for_label }}">{{ form.status.label }}</label>
-            {{ form.status }}
-            {% if form.status.errors %}
-                <div class="error">{{ form.status.errors }}</div>
+            <label for="{{ form.name.id_for_label }}">{{ form.title.label }}</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+                <div class="error">{{ form.title.errors }}</div>
             {% endif %}
         </div>
+    
         <div class="form-group">
-            <label for="{{ form.priority.id_for_label }}">{{ form.priority.label }}</label>
-            {{ form.priority }}
-            {% if form.priority.errors %}
-                <div class="error">{{ form.priority.errors }}</div>
+            <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+                <div class="error">{{ form.description.errors }}</div>
             {% endif %}
         </div>
-    </div>
-
-    <div class="button-wrapper"><button type="submit" class="button">Submit</button></div>
-</form>
+    
+        <div class="dropdown">
+            <div class="form-group">
+                <label for="{{ form.status.id_for_label }}">{{ form.status.label }}</label>
+                {{ form.status }}
+                {% if form.status.errors %}
+                    <div class="error">{{ form.status.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.priority.id_for_label }}">{{ form.priority.label }}</label>
+                {{ form.priority }}
+                {% if form.priority.errors %}
+                    <div class="error">{{ form.priority.errors }}</div>
+                {% endif %}
+            </div>
+        </div>
+    
+        <div class="button-wrapper"><button type="submit" class="button">Submit</button></div>
+    </form>
 
 
 

@@ -96,12 +96,13 @@
                 {% endif %}
             </div>
 
-            <div class="button-wrapper">
-                <input class="button" type="submit" value="Register">
+            <div class="buttons">
+                <a href="{% url 'login' %}"class="button" id="btn-back">Login</a>
+                <input class="button" type="submit" value="Register"></input>
             </div>
+        
         </form>
 
-        <p>Already have an account? <a href="{% url 'login' %}" class="button">Login</a></p>
     </div>
 </div>
 

@@ -1,0 +1,117 @@
+.styled-form {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 1rem 5rem;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 1.5rem;
+    gap: .5rem;
+}
+.header-bar{
+    text-align: center;
+}
+
+label{
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+input[type="text"],input[type="password"],
+textarea,
+select {
+    text-align: start;
+    padding: .3rem 1.5rem ;
+    border-radius: .2rem;
+    font-size: .7rem;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+input[type="text"]:focus,input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.error {
+    color: red;
+    font-size: 0.875em;
+}
+
+#btn-back{
+    border: 2px solid var(--color-400);
+    background-color: transparent;
+    color: var(--color-400);
+    font-weight: 400;
+    opacity: .5;
+
+}
+
+#btn-back:hover{
+    border: 0px ;
+    background-color: var(--color-100);
+    color: white;
+    font-weight: 600;
+    opacity: 1;
+}
+
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.button-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.button {
+    background-color: var(--color-400) ;
+    color: var(--text-000);
+    border: 0px;
+    font-size: 1rem;
+    border-radius: .3rem;
+    padding: .2rem 1.5rem;
+    cursor: pointer;
+    box-shadow: 0rem .3rem .8rem rgba(0, 0, 0, .3);
+    transition: all 300ms;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 1rem;
+}
+
+.button:hover{
+    background-color: var(--color-100) ;
+    box-shadow: 0rem .5rem 1rem rgba(0, 0, 0, .2);
+    transform: translateY(-3px);
+    font-weight: 700;
+}
+
+.button:active{
+    background-color: var(--color-100) ;
+    box-shadow: 0rem .3rem .8rem rgba(0, 0, 0, .4);
+    transform: translateY(-1px);
+}
+
+.container{
+    background-color: transparent;
+    box-shadow: 0rem 0rem 0rem rgba(0, 0, 0, 0);
+    overflow-y: hidden;
+
+} 
+ 
