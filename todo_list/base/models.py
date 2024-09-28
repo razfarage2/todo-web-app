@@ -11,7 +11,7 @@ class Task(models.Model):
     description = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=30, choices=[(tag.name, tag.value) for tag in Status], default='Pending')
     priority = models.CharField(max_length=30, choices=[(tag.name, tag.value) for tag in Priority], default='Low')
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='tasks', null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

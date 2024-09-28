@@ -90,6 +90,8 @@ class TaskCreate(LoginRequiredMixin, CreateView):
         return super(TaskCreate, self).form_valid(form)
 
 
+
+
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['title', 'description', 'status', 'priority']

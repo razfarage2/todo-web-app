@@ -1,89 +1,108 @@
 {% extends 'base/main.html' %}
+{% load static %}
+
+{% block extraheader %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock extraheader %}
+
 
 {% block content %}
+<div class="styled-form">
+    <div class="card-body">
+        <div class="header-bar">
+            <h1>Register</h1>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
 
-<div class="header-bar">
-    <h1>Register</h1>
-</div>
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger error">
+                    <strong>There were some errors:</strong>
+                    <ul>
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
 
-<div class="card-body">
-    <form action="" method="POST">
-        {% csrf_token %}
-
-        {% if form.non_field_errors %}
-            <div class="alert alert-danger">
-                <strong>There were some errors:</strong>
-                <ul>
-                    {% for error in form.non_field_errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
+            <div class="form-group">
+                <label for="{{ form.firstname.id_for_label }}">{{ form.firstname.label }}</label>
+                {{ form.firstname }}
+                {% if form.firstname.errors %}
+                    <div class="alert alert-danger error">
+                        <ul>
+                            {% for error in form.firstname.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
-        {% endif %}
 
-               <label for="{{ form.firstname.id_for_label }}">{{ form.firstname.label }}</label>
-        {{ form.firstname }}
-        {% if form.firstname.errors %}
-            <div class="alert alert-danger">
-                <ul>
-                    {% for error in form.firstname.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
+            <div class="form-group">
+                <label for="{{ form.lastname.id_for_label }}">{{ form.lastname.label }}</label>
+                {{ form.lastname }}
+                {% if form.lastname.errors %}
+                    <div class="alert alert-danger error">
+                        <ul>
+                            {% for error in form.lastname.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
-        {% endif %}
 
-        <label for="{{ form.lastname.id_for_label }}">{{ form.lastname.label }}</label>
-        {{ form.lastname }}
-        {% if form.lastname.errors %}
-            <div class="alert alert-danger">
-                <ul>
-                    {% for error in form.lastname.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="alert alert-danger error">
+                        <ul>
+                            {% for error in form.username.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
-        {% endif %}
-        <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
-        {{ form.username }}
-        {% if form.username.errors %}
-            <div class="alert alert-danger">
-                <ul>
-                    {% for error in form.username.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
+
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <div class="alert alert-danger error">
+                        <ul>
+                            {% for error in form.password1.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
-        {% endif %}
 
-        <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
-        {{ form.password1 }}
-        {% if form.password1.errors %}
-            <div class="alert alert-danger">
-                <ul>
-                    {% for error in form.password1.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="alert alert-danger error">
+                        <ul>
+                            {% for error in form.password2.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
-        {% endif %}
 
-        <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
-        {{ form.password2 }}
-        {% if form.password2.errors %}
-            <div class="alert alert-danger">
-                <ul>
-                    {% for error in form.password2.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
+            <div class="button-wrapper">
+                <input class="button" type="submit" value="Register">
             </div>
-        {% endif %}
+        </form>
 
-        <input class="button" type="submit" value="Register">
-    </form>
-
-    <p>Don't have an account? <a href="{% url 'login' %}">Login</a></p>
+        <p>Already have an account? <a href="{% url 'login' %}" class="button">Login</a></p>
+    </div>
 </div>
 
 {% endblock content %}

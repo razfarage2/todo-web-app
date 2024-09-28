@@ -1,7 +1,17 @@
 {% extends 'base/main.html' %}
+{% load static %}
+
+{% block extraheader %}
+<link rel="stylesheet" href="{% static 'css/guest.css' %}">
+{% endblock extraheader %}
+
 {% block content %}
-<h1>Please Login to View this page</h1>
-<a href="{% url 'login' %}">Login</a>
-<p>if you dont have an account you can <a href="{% url 'register' %}">register</a></p>
+<div class="guest-wrapper">
+    <h1 class="guest-title">Please Login to View this page</h1>
+    <div class="buttons">
+        <a href="{% url 'login' %}" class="button">Login</a>
+        <a href="{% url 'register' %}" class="button">register</a>
+    </div>
+</div>
 
 {% endblock content%}
