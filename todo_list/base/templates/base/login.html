@@ -1,26 +1,35 @@
 {% extends 'base/main.html' %}
+{% load static %}
 
+{% block extraheader %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock extraheader %}
 {% block content %}
 
-<div class="header-bar">
-    <h1>Login</h1>
-</div>
 
-<div class="card-body">
-    <form action="" method="POST">
-    {% csrf_token %}
-        <lable>{{form.username.label}}</lable>
-        {{form.username}}
+<div class="styled-form">
+    <div class="card-body">
+        <div class="header-bar">
+            <h1>Login</h1>
+        </div>
+        <form action="" method="POST" class="flex-form">
+        <div class="form">
+            {% csrf_token %}
+                <label>{{form.username.label}}</label>
+                {{form.username}}
+                <label>{{form.password.label}}</label>
+                {{form.password}}
+        </div>
+        <div class="buttons">
+            <input class="button" type="submit" value="Login">
+             <a href="{% url 'register' %}" class="button">Register</a></p>
+        </div>
 
-        <lable>{{form.password.label}}</lable>
-        {{form.password}}
-
-    <input class="button" type="submit" value="Login">
-
-</form>
-
-<p>Dont have an account? <a href="{% url 'register' %}">Register</a></p>
-
+    
+    </form>
+    
+    
+    </div>
 </div>
 
 
