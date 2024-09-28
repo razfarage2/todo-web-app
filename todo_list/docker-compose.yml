@@ -21,9 +21,9 @@ services:
     depends_on:
       - postgres
     environment:
-      - DATABASE_URL=postgres://postgres:14mg5l4o6Raz@@postgres:5432/todo-web-db
+
       - DB_NAME=todo-web-db
       - DB_USER=postgres
-      - DB_PASSWORD=14mg5l4o6Raz@
-      - DB_HOST=raz
+      - DB_PASSWORD=14mg5l4o6Raz
+      - DB_HOST=localhost
       - DB_PORT=5432

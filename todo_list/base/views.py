@@ -47,9 +47,9 @@ class RegisterPage(FormView):
         return super(RegisterPage, self).get(*args, **kwargs)
 
 
-
 class GuestPage(TemplateView):
     template_name = 'base/guest_page.html'
+
 
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
@@ -91,8 +91,6 @@ class TaskCreate(LoginRequiredMixin, CreateView):
         return super(TaskCreate, self).form_valid(form)
 
 
-
-
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['title', 'description', 'status', 'priority']
@@ -100,11 +98,8 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'guest-page'
 
 
-
 class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
     login_url = 'guest-page'
-
-
